@@ -2,9 +2,9 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:fontFamily="@font/kgd"
     android:textSize="25sp"
-    android:paddingLeft="6dip"
-    android:paddingRight="6dip"
+    android:paddingStart="@dimen/listItemPadding"
+    android:paddingEnd="@dimen/listItemPadding"
     android:gravity="center" />

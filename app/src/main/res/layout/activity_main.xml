@@ -21,9 +21,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="85dp"
-            android:text="Ambient Noise"
+            android:text="@string/app_name"
             android:textSize="38sp"
-            android:textStyle="bold"
+            android:textStyle="italic"
             android:fontFamily="@font/timeless"
             android:gravity="center"/>
 

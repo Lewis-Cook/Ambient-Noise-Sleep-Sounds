@@ -10,4 +10,10 @@
 
     <string name="timer_finished">Finished</string>
 
+    <string name="notification_description">This channel displays the play and pause functions</string>
+
+    <string name="remaining_time">Time Remaining:</string>
+    <string name="minutes">Minutes</string>
+    <string name="hours">Hours</string>
+
 </resources>

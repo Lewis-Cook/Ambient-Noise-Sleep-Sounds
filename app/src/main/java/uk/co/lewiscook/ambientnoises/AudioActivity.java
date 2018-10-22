@@ -25,17 +25,20 @@ import java.util.concurrent.TimeUnit;
 
 import static uk.co.lewiscook.ambientnoises.App.CHANNEL_1_ID;
 
-public class RainOnOcean extends AppCompatActivity {
+public class AudioActivity extends AppCompatActivity {
 
     private AudioManager mAudioManager;
 
-    private SeekBar volumeSeekbar = null;
-
     private AudioManager audioManager = null;
 
-    private NotificationManagerCompat notificationManager;
+    public static NotificationManagerCompat notificationManager;
+
+    //Static MediaPlayer so all classes can access it
+    public static PerfectLoopMediaPlayer mMediaPlayer;
 
     private CountDownTimer countDown;
+
+    int AudioResID;
 
     TextView tView;
     TextView countdownnView;
@@ -43,16 +46,13 @@ public class RainOnOcean extends AppCompatActivity {
     TextView countdowntView;
     TextView countdownHMView;
 
-    NumberPicker hourNumPicker;
-    NumberPicker minNumPicker;
-
     //Release the MediaPlayer and abandon AudioFocus
     private void releaseMediaPlayer() {
-        if (MainActivity.mMediaPlayer != null) {
+        if (mMediaPlayer != null) {
 
-            MainActivity.mMediaPlayer.release();
+            mMediaPlayer.release();
 
-            MainActivity.mMediaPlayer = null;
+            mMediaPlayer = null;
 
             mAudioManager.abandonAudioFocus(mAudioFocusChange);
         }
@@ -64,17 +64,18 @@ public class RainOnOcean extends AppCompatActivity {
         Intent OpenApp = new Intent(this, MainActivity.class);
         PendingIntent open = PendingIntent.getActivity(this, 0, OpenApp, 0);
 
-//        Intent PlayMusic = new Intent(this, PlayReceiver.class);
-//        PendingIntent play = PendingIntent.getBroadcast(this, 0, PlayMusic, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent PlayMusic = new Intent(this, PlayReceiver.class);
+        PendingIntent play = PendingIntent.getBroadcast(this, 0, PlayMusic, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Intent StopMusic = new Intent(this, PauseReceiver.class);
-        PendingIntent stop = PendingIntent.getBroadcast(this, 0, StopMusic, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent PauseMusic = new Intent(this, PauseReceiver.class);
+        PendingIntent pause = PendingIntent.getBroadcast(this, 0, PauseMusic, PendingIntent.FLAG_UPDATE_CURRENT);
+
 
         Bitmap thumbNail = BitmapFactory.decodeResource(getResources(), R.drawable.ambient_noise_ic);
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
 //                .addAction(R.drawable.ic_play, "Play", play)
-                .addAction(R.drawable.ic_stop, "Pause", stop)
+                .addAction(R.drawable.ic_stop, "Pause", pause)
                 .setContentIntent(open)
                 .setLargeIcon(thumbNail)
                 .setSmallIcon(R.drawable.ic_music)
@@ -107,8 +108,9 @@ public class RainOnOcean extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            int resID = bundle.getInt("resID");
-            backGround.setImageResource(resID);
+            int ImageResID = bundle.getInt(MainActivity.IMAGE_BUNDLE_KEY);
+            backGround.setImageResource(ImageResID);
+            AudioResID = bundle.getInt(MainActivity.AUDIO_BUNDLE_KEY);
         }
 
         //Button that displays the dialog to set countdown timer
@@ -116,8 +118,8 @@ public class RainOnOcean extends AppCompatActivity {
         popupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RainOnOcean.this);
-                LayoutInflater inflater = RainOnOcean.this.getLayoutInflater();
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(AudioActivity.this);
+                LayoutInflater inflater = AudioActivity.this.getLayoutInflater();
                 View dialogView = inflater.inflate(R.layout.popup_window, null);
                 dialogBuilder.setView(dialogView);
 
@@ -125,15 +127,15 @@ public class RainOnOcean extends AppCompatActivity {
                 alertDialog.show();
 
                 tView = dialogView.findViewById(R.id.textField);
-                hourNumPicker = dialogView.findViewById(R.id.hour_Numb_Picker);
-                minNumPicker = dialogView.findViewById(R.id.min_Numb_Picker);
+                final NumberPicker hourNumPicker = dialogView.findViewById(R.id.hour_Numb_Picker);
+                final NumberPicker minNumPicker = dialogView.findViewById(R.id.min_Numb_Picker);
 
                 hourNumPicker.setMinValue(0);
                 hourNumPicker.setMaxValue(9);
                 hourNumPicker.setWrapSelectorWheel(true);
 
                 minNumPicker.setMinValue(0);
-                minNumPicker.setMaxValue(59);
+                minNumPicker.setMaxValue(60);
                 minNumPicker.setWrapSelectorWheel(true);
 
 
@@ -175,9 +177,9 @@ public class RainOnOcean extends AppCompatActivity {
                             }
 
                             public void onFinish() {
-                                if (MainActivity.mMediaPlayer != null && MainActivity.mMediaPlayer.isPlaying()) {
+                                if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
                                     tView.setText(R.string.timer_finished);
-                                    MainActivity.mMediaPlayer.stop();
+                                    mMediaPlayer.stop();
                                     releaseMediaPlayer();
                                     textViewVisibilityInVis();
                                 }
@@ -224,9 +226,9 @@ public class RainOnOcean extends AppCompatActivity {
         public void onAudioFocusChange(int focusChange) {
             if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
                     focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                MainActivity.mMediaPlayer.pause();
+                mMediaPlayer.pause();
             } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                MainActivity.mMediaPlayer.start();
+                mMediaPlayer.start();
 
             } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                 releaseMediaPlayer();
@@ -238,7 +240,7 @@ public class RainOnOcean extends AppCompatActivity {
     //For changing the seek bar to change volume
     private void initControls() {
         try {
-            volumeSeekbar = findViewById(R.id.seekBarVolume);
+            SeekBar volumeSeekbar = findViewById(R.id.seekBarVolume);
             audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
             volumeSeekbar.setMax(audioManager
                     .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
@@ -286,8 +288,8 @@ public class RainOnOcean extends AppCompatActivity {
     }
 
     public void stopMediaPlayer() {
-        if (MainActivity.mMediaPlayer != null && MainActivity.mMediaPlayer.isPlaying()) {
-            MainActivity.mMediaPlayer.stop();
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+            mMediaPlayer.stop();
             releaseMediaPlayer();
             cancelCountdownTimer();
             textViewVisibilityInVis();
@@ -296,36 +298,36 @@ public class RainOnOcean extends AppCompatActivity {
     }
 
     public void startMediaPlayer() {
-        if (MainActivity.mMediaPlayer != null && MainActivity.mMediaPlayer.isPlaying()) {
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             releaseMediaPlayer();
             textViewVisibilityInVis();
-            MainActivity.mMediaPlayer = PerfectLoopMediaPlayer.create(RainOnOcean.this, R.raw.ambient_ocean_and_birds);
-            MainActivity.mMediaPlayer.start();
+            mMediaPlayer = PerfectLoopMediaPlayer.create(AudioActivity.this, AudioResID);
+            mMediaPlayer.start();
             sendNotification();
         } else {
             releaseMediaPlayer();
             int result = mAudioManager.requestAudioFocus(mAudioFocusChange, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
             if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 textViewVisibilityInVis();
-                MainActivity.mMediaPlayer = PerfectLoopMediaPlayer.create(RainOnOcean.this, R.raw.ambient_ocean_and_birds);
-                MainActivity.mMediaPlayer.start();
+                mMediaPlayer = PerfectLoopMediaPlayer.create(AudioActivity.this, AudioResID);
+                mMediaPlayer.start();
                 sendNotification();
             }
         }
     }
 
     public void startMediaPlayerInDialog() {
-        if (MainActivity.mMediaPlayer != null && MainActivity.mMediaPlayer.isPlaying()) {
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             releaseMediaPlayer();
-            MainActivity.mMediaPlayer = PerfectLoopMediaPlayer.create(RainOnOcean.this, R.raw.ambient_ocean_and_birds);
-            MainActivity.mMediaPlayer.start();
+            mMediaPlayer = PerfectLoopMediaPlayer.create(AudioActivity.this, AudioResID);
+            mMediaPlayer.start();
             sendNotification();
         } else {
             releaseMediaPlayer();
             int result = mAudioManager.requestAudioFocus(mAudioFocusChange, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
             if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                MainActivity.mMediaPlayer = PerfectLoopMediaPlayer.create(RainOnOcean.this, R.raw.ambient_ocean_and_birds);
-                MainActivity.mMediaPlayer.start();
+                mMediaPlayer = PerfectLoopMediaPlayer.create(AudioActivity.this, AudioResID);
+                mMediaPlayer.start();
                 sendNotification();
             }
         }

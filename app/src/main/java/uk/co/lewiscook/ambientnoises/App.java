@@ -22,7 +22,7 @@ public class App extends Application {
             NotificationChannel channel1 = new NotificationChannel(
                     CHANNEL_1_ID, "Channel 1", NotificationManager.IMPORTANCE_LOW
             );
-            channel1.setDescription("This channel displays the play and pause functions");
+            channel1.setDescription(String.valueOf(R.string.notification_description));
 
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel1);

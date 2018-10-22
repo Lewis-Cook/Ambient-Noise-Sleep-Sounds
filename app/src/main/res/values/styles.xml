@@ -8,4 +8,28 @@
         <item name="colorAccent">#448AFF</item>
     </style>
 
+    <style name="CountDownTimersTheme">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/MainColor</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">invisible</item>
+        <item name="android:fontFamily">@font/timeless</item>
+
+    </style>
+
+    <style name="CountDownTimersThemeDigital" parent="CountDownTimersTheme">
+        <item name="android:visibility">visible</item>
+        <item name="android:fontFamily">@font/digital7</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="CountDownTimersThemeDigital2" parent="CountDownTimersTheme">
+        <item name="android:visibility">visible</item>
+        <item name="android:fontFamily">@font/digital7</item>
+    </style>
+
+
+
 </resources>

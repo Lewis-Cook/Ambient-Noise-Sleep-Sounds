@@ -9,10 +9,10 @@ public class PlayReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Boolean isPaused = !MainActivity.mMediaPlayer.isPlaying();
+        Boolean isPaused = !AudioActivity.mMediaPlayer.isPlaying();
 
         if (isPaused) {
-            MainActivity.mMediaPlayer.start();
+            AudioActivity.mMediaPlayer.start();
         }
     }
 }

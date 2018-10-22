@@ -9,6 +9,8 @@ import java.io.IOException;
 
 /**
  * Created by viksaaskool on 13-04-2017.
+ *
+ * Taken from stackoverflow as MediaPlayer.setLooping method is not reliable.
  */
 
 public class PerfectLoopMediaPlayer {
