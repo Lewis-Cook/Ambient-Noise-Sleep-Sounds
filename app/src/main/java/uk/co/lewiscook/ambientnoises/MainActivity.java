@@ -26,16 +26,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final ArrayList<String> noises = new ArrayList<>();
-        noises.add("Calm Lake");
-        noises.add("Rain in the City");
-        noises.add("Rain Forest");
-        noises.add("Trickling Stream");
-        noises.add("Tent in the Woods");
-        noises.add("Waves on the Shore");
-        noises.add("Ocean Waves Breaking");
-        noises.add("Rain on the Ocean");
-        noises.add("Fast Moving River");
-        noises.add("Waterfall");
+        noises.add(getString(R.string.calm_lake));
+        noises.add(getString(R.string.rain_city));
+        noises.add(getString(R.string.rainforest));
+        noises.add(getString(R.string.trickling_stream));
+        noises.add(getString(R.string.tent_woods));
+        noises.add(getString(R.string.waves_shore));
+        noises.add(getString(R.string.ocean_waves_breaking));
+        noises.add(getString(R.string.rain_ocean));
+        noises.add(getString(R.string.fast_river));
+        noises.add(getString(R.string.waterfall));
 
         ArrayAdapter adapter = new ArrayAdapter<>(MainActivity.this, R.layout.custom_listview, noises);
 

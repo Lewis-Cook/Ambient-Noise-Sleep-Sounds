@@ -34,9 +34,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\lewis\Pictures\main_forest_2.0.png" />
+                                      <entry key="foregroundImage" value="C:\Users\lewis\Pictures\main_forest_hd.png" />
                                       <entry key="foregroundLayerName" value="ic_launcher_foreground" />
-                                      <entry key="outputName" value="ic_launcher_an" />
+                                      <entry key="outputName" value="ic_launcher_hd" />
                                     </map>
                                   </option>
                                 </PersistentState>

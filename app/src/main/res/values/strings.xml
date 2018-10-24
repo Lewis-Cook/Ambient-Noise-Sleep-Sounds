@@ -2,7 +2,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <!-- App name -->
-    <string name="app_name">Ambient Noise</string>
+    <string name="app_name">Ambient \nNoise</string>
     <string name="app_version_number">1.0</string>
     <string name="menu_settings">Settings</string>
 
@@ -12,8 +12,23 @@
 
     <string name="notification_description">This channel displays the play and pause functions</string>
 
+    <!--Pop up window-->
     <string name="remaining_time">Time Remaining:</string>
     <string name="minutes">Minutes</string>
     <string name="hours">Hours</string>
+
+    <!--Page Titles-->
+    <string name="calm_lake">Calm Lake</string>
+    <string name="rain_city">Rain in the City</string>
+    <string name="rainforest">Rainforest</string>
+    <string name="trickling_stream">Trickling Stream</string>
+    <string name="tent_woods">Tent in the Woods</string>
+    <string name="waves_shore">Waves on the Shore</string>
+    <string name="ocean_waves_breaking">Ocean Waves Breaking</string>
+    <string name="rain_ocean">Rain on the Ocean</string>
+    <string name="fast_river">Fast Moving River</string>
+    <string name="waterfall">Waterfall</string>
+
+
 
 </resources>

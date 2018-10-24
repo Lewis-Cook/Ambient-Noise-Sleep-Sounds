@@ -27,7 +27,7 @@ import static uk.co.lewiscook.ambientnoises.App.CHANNEL_1_ID;
 
 public class AudioActivity extends AppCompatActivity {
 
-    private AudioManager mAudioManager;
+    public static AudioManager mAudioManager;
 
     private AudioManager audioManager = null;
 
@@ -36,15 +36,15 @@ public class AudioActivity extends AppCompatActivity {
     //Static MediaPlayer so all classes can access it
     public static PerfectLoopMediaPlayer mMediaPlayer;
 
-    private CountDownTimer countDown;
+    public static CountDownTimer countDown;
 
     int AudioResID;
 
     TextView tView;
-    TextView countdownnView;
-    TextView countdownnView2;
-    TextView countdowntView;
-    TextView countdownHMView;
+    public static TextView countdownnView;
+    public static TextView countdownnView2;
+    public static TextView countdowntView;
+    public static TextView countdownHMView;
 
     //Release the MediaPlayer and abandon AudioFocus
     private void releaseMediaPlayer() {
@@ -182,6 +182,7 @@ public class AudioActivity extends AppCompatActivity {
                                     mMediaPlayer.stop();
                                     releaseMediaPlayer();
                                     textViewVisibilityInVis();
+                                    notificationManager.cancelAll();
                                 }
                             }
                         }.start();
@@ -341,7 +342,7 @@ public class AudioActivity extends AppCompatActivity {
         long minutesRemaining = totalMinutesRemaining % 60;
         long secondsRemaining = totalSecondsRemaining % 60;
 
-        String outputString = String.format(Locale.getDefault(), "Time Remaining:\nH: %d M: %d S: %d", hoursRemaining, minutesRemaining, secondsRemaining);
+        String outputString = String.format(Locale.getDefault(),getString(R.string.remaining_time) + "\nH: %d M: %d S: %d", hoursRemaining, minutesRemaining, secondsRemaining);
         String simpleTimeOutput = String.format(Locale.getDefault(), "%d:%d", hoursRemaining, minutesRemaining);
         String simpleTimeOutputSeconds = String.format(Locale.getDefault(), ":%d", secondsRemaining);
 
