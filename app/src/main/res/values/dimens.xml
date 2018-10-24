@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="listItemPadding">6dp</dimen>
+
+    <dimen name="timerButtonSize">42dp</dimen>
+
+    <dimen name="playPauseHeight">82dp</dimen>
+    <dimen name="playPauseWidth">132dp</dimen>
+</resources>

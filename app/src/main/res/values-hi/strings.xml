@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">आस पास का शोर</string>
+    <string name="app_version_number" translatable="false">1.0</string>
+    <string name="menu_settings">सेटिंग</string>
+
+    <string name="set_timer_value">टाइमर शुरू करने के लिए आपको पहले एक मान निर्धारित करना होगा</string>
+
+    <string name="timer_finished">ख़त्म होना</string>
+
+    <string name="notification_description">यह चैनल प्ले और रोक फ़ंक्शन प्रदर्शित करता है</string>
+
+    <string name="remaining_time">समय शेष</string>
+    <string name="minutes">मिनट</string>
+    <string name="hours">घंटे</string>
+
+    <!--Page Titles-->
+    <string name="calm_lake">शांत झील</string>
+    <string name="rain_city">शहर में बारिश</string>
+    <string name="rainforest">वर्षा वन</string>
+    <string name="trickling_stream">ट्रिकलिंग स्ट्रीम</string>
+    <string name="tent_woods">जंगल में तम्बू</string>
+    <string name="waves_shore">किनारे पर लहरें</string>
+    <string name="ocean_waves_breaking">महासागर तरंगों तोड़ने</string>
+    <string name="rain_ocean">सागर पर बारिश</string>
+    <string name="fast_river">तेजी से चलती नदी</string>
+    <string name="waterfall">झरना</string>
+
+</resources>

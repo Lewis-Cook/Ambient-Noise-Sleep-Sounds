@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Ruido Ambiental</string>
+    <string name="app_version_number" translatable="false">1.0</string>
+    <string name="menu_settings">Ajustes</string>
+
+    <string name="set_timer_value">Para iniciar el temporizador primero debe establecer un valor</string>
+
+    <string name="timer_finished">Terminado</string>
+
+    <string name="notification_description">Este canal muestra las funciones de reproducción y pausa</string>
+
+    <string name="remaining_time">Tiempo restante:</string>
+    <string name="minutes">Minutos</string>
+    <string name="hours">Horas</string>
+
+    <!--Page Titles-->
+    <string name="calm_lake">Lago Tranquilo</string>
+    <string name="rain_city">Lluvia en la Ciudad</string>
+    <string name="rainforest">Selva</string>
+    <string name="trickling_stream">Corriente de Goteo</string>
+    <string name="tent_woods">Carpa en el Bosque</string>
+    <string name="waves_shore">Olas en la Orilla</string>
+    <string name="ocean_waves_breaking">Olas del océano Rompiendo</string>
+    <string name="rain_ocean">Lluvia en el Océano</string>
+    <string name="fast_river">Río en movimiento Rápido</string>
+    <string name="waterfall">Cascada</string>
+
+</resources>

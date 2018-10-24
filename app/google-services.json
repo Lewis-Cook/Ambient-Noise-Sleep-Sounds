@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "261026729746",
+    "firebase_url": "https://ambient-noise-375d3.firebaseio.com",
+    "project_id": "ambient-noise-375d3",
+    "storage_bucket": "ambient-noise-375d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261026729746:android:be051335e66c501d",
+        "android_client_info": {
+          "package_name": "uk.co.lewiscook.ambientnoises"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261026729746-savo7vil0j1fc12iqer56hde1hn6ffbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uk.co.lewiscook.ambientnoises",
+            "certificate_hash": "af2e3f7618b92c05f1e30b0a3ca524d0e88a9a45"
+          }
+        },
+        {
+          "client_id": "261026729746-qpjhf1rkd7h84urffsrcfrrmgu3gfts9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9-y1rWv8pSXIC6FBAqXukMpgBs8bFsK0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261026729746-qpjhf1rkd7h84urffsrcfrrmgu3gfts9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
